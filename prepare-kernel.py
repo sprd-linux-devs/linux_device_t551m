@@ -28,12 +28,16 @@ def main():
     if not head.startswith(KERNEL_COMMIT):
         raise SystemExit('Expected linux-lts-e5 commit ' + KERNEL_COMMIT)
     runpy.run_path(str(Path(__file__).resolve().parents[1] / 'linux_device_common/kernel/display.py'))['apply'](k)
+    runpy.run_path(str(Path(__file__).resolve().parents[1] / 'linux_device_common/kernel/power.py'))['apply'](k)
+    runpy.run_path(str(Path(__file__).resolve().parents[1] / 'linux_device_common/kernel/charger-capabilities.py'))['apply'](k)
     runpy.run_path(str(Path(__file__).resolve().parents[1] / 'linux_device_common/kernel/emmc.py'))['apply'](k)
+    runpy.run_path(str(Path(__file__).resolve().parents[1] / 'linux_device_common/kernel/sd-power.py'))['apply'](k)
     runpy.run_path(str(Path(__file__).resolve().parents[1] / 'linux_device_common/kernel/eic.py'))['apply'](k)
     runpy.run_path(str(Path(__file__).resolve().parents[1] / 'linux_device_common/kernel/thermal.py'))['apply'](k)
     runpy.run_path(str(Path(__file__).resolve().parents[1] / 'linux_device_common/kernel/sipa.py'))['apply'](k)
     runpy.run_path(str(Path(__file__).resolve().parents[1] / 'linux_device_common/kernel/fuel-gauge.py'))['apply'](k)
     runpy.run_path(str(Path(__file__).resolve().parents[1] / 'linux_device_common/kernel/wifi-sae.py'))['apply'](k)
+    runpy.run_path(str(Path(__file__).resolve().parents[1] / 'linux_device_common/kernel/wifi-stations.py'))['apply'](k)
     url = ('https://raw.githubusercontent.com/Enceka/kernel_sprd_ums9158/'
            + VENDOR_COMMIT + '/drivers/power/supply/bq2560x-charger.c')
     source = urllib.request.urlopen(url, timeout=60).read()
